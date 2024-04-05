@@ -1,8 +1,32 @@
+@import "../../variables.scss";
+
 .formulario {
-    width: 400px;
-    background-color: red;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--body-font);
+    margin: auto;
+    overflow: hidden;
+
+    .campos_login {
+
+        h1 {
+            font-size: var(--titulo--principal);
+        }
+    }
 
     .imagem1 {
-        width: 220px;
+        height: auto;
+        width: 40%;
+        border-bottom-right-radius: 18%;
+    }
+
+    form {
+        width: 60%;
+        background-color: blue;
+        padding: 20px;
+        /* Ajuste conforme necessário */
     }
 }

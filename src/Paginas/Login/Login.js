@@ -1,12 +1,19 @@
+import { RiLockPasswordFill } from "react-icons/ri";
+import { AiOutlineMail } from "react-icons/ai";
+
+import { BiAdjust } from "react-icons/bi";
+
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from "@material-ui/core";
+import InputDefault from "../../Componentes/Inputs/input";
 import { auth } from "../../firebase";
 import { Link } from "react-router-dom";
 import logo from "../../assets/imagens/logo.png"
 import imagem1 from "../../assets/imagens/login-1.jpg"
 import "./login.scss"
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         position: "absolute",
@@ -33,7 +40,6 @@ const Login = () => {
     };
 
     return (
-
         <form className='formulario'>
             <div>
                 <img
@@ -43,42 +49,49 @@ const Login = () => {
 
                 />
             </div>
-            <center>
+
+            <br></br>
+
+            <div className="campos_login">
                 <img
                     className="app__headerImage"
                     src={logo}
                     alt=""
 
                 />
-            </center>
-            <br></br>
-            <h1>Bem Vindo ao  <span>Helpets</span></h1>
-            <p>faça login e encontre um amigo de 4 patas!</p>
-            <Input
-                placeholder="Digite seu email..."
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <br></br>
-            <Input
-                placeholder="Digite sua senha..."
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                <h1>Bem Vindo ao  <span>Helpets</span></h1>
+                <p>faça login e encontre um amigo de 4 patas!</p>
+                <InputDefault
+                    icon={<AiOutlineMail />}
+                    placeholder="Digite seu email..."
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <br></br>
+                <InputDefault
+                    icon={<RiLockPasswordFill />}
+                    placeholder="Digite sua senha..."
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
 
-            />
-            <br></br>
-            <Button type="submit" onClick={signIn}>
-                <Link to="/home" >
-                    Entrar
+                />
+                <br></br>
+                <Button type="submit" onClick={signIn}>
+                    <Link to="/home" >
+                        Entrar
+                    </Link>
+                </Button>
+                <br />
+                <Link to="/cadastro" >
+                    Não possui cadatro? <span> cadastre-se aqui</span>
                 </Link>
-            </Button>
-            <br />
-            <Link to="/cadastro" >
-                Não possui cadatro? <span> cadastre-se aqui</span>
-            </Link>
+            </div>
+
+            <AiOutlineMail />
         </form >
+
 
     );
 }

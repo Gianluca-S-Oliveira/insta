@@ -1,0 +1,22 @@
+@import "../../variables.scss";
+
+.custom-input {
+    background-color: white;
+
+    border: 1px solid var(--cinza--escuro);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: var(--borda--arrendodada);
+    width: 100%;
+    font-size: var(--paragrafo);
+
+    i {
+        color: var(--cor--principal);
+    }
+
+    input {
+        border: none;
+        padding: 10px;
+    }
+}
