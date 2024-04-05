@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home"; // Importe o componente da outra página
+import Home from "./Paginas/Home/Home"; // Importe o componente da outra página
 // Importe o componente da outra página
-import Login from "../src/components/Login";
-import Cadastro from "../src/components/cadastro";
-import Posts from './components/Posts';
+import Login from "./Paginas/Login/Login";
+import Cadastro from "./Paginas/Cadastro/cadastro";
+import Posts from './Paginas/Posts/Posts';
 
 function App() {
   return (
