@@ -1,0 +1,29 @@
+.custom-button {
+    background-color: var(--cor--principal);
+    border: 1px solid var(--cinza--escuro);
+    padding: 10px 20px;
+    text-decoration: none;
+    align-items: center;
+    border-radius: var(--borda--arrendodada);
+    width: 85%;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--laranja--escuro);
+        transition: 90ms ease-in-out;
+        cursor: pointer;
+    }
+
+    .custom-button__link {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 700;
+
+
+    }
+}

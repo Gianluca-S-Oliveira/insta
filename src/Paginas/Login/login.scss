@@ -1,32 +1,70 @@
 @import "../../variables.scss";
 
 .formulario {
-    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
-    background-color: var(--body-font);
-    margin: auto;
-    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+
+    .image_container {
+        width: 40%;
+        height: 100vh;
+        overflow: hidden;
+
+        background-size: cover;
+
+        .imagem1 {
+            object-fit: cover;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            border-bottom-right-radius: 10%;
+        }
+
+    }
 
     .campos_login {
-
         h1 {
             font-size: var(--titulo--principal);
+
+            p {
+                font-size: 16px;
+                text-align: center;
+                font-weight: 500;
+            }
+        }
+
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+
+        .span {
+            color: var(--cor--principal);
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 20px;
         }
     }
 
-    .imagem1 {
-        height: auto;
-        width: 40%;
-        border-bottom-right-radius: 18%;
-    }
 
-    form {
-        width: 60%;
-        background-color: blue;
-        padding: 20px;
-        /* Ajuste conforme necessário */
+}
+
+@media screen and (max-width: 850px) {
+    .formulario {
+        flex-direction: column-reverse;
+
+        .image_container {
+            display: none;
+        }
+
+        .campos_login {
+            width: 100%;
+            margin-top: 30%;
+        }
     }
 }

@@ -6,13 +6,16 @@ import { BiAdjust } from "react-icons/bi";
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from "@material-ui/core/Modal";
-import { Button, Input } from "@material-ui/core";
+import BotaoCustomizado from "../../Componentes/Botao/botao";
+import { useNavigate } from 'react-router-dom';
 import InputDefault from "../../Componentes/Inputs/input";
 import { auth } from "../../firebase";
 import { Link } from "react-router-dom";
 import logo from "../../assets/imagens/logo.png"
 import imagem1 from "../../assets/imagens/login-1.jpg"
 import "./login.scss"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -26,22 +29,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = () => {
+    const notify = () => toast("Wow so easy!");
+
+    const navigate = useNavigate();
     const classes = useStyles();
     const [openSignin, setOpensignin] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const signIn = (event) => {
-        event.preventDefault();
+        event.preventDefault(event);
         auth.signInWithEmailAndPassword(email, password)
-            .catch((error) => alert(error.message));
+            .then(() => {
+                console.log("logado");
+                navigate('/home');
+            })
+            .catch((error) => toast.error("Email ou senha inválidos! Por favor, tente novamente", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            }));
 
-        setOpensignin(false);
     };
 
     return (
         <form className='formulario'>
-            <div>
+            <div className="image_container">
                 <img
                     className="imagem1"
                     src={imagem1}
@@ -59,12 +76,11 @@ const Login = () => {
                     alt=""
 
                 />
-                <h1>Bem Vindo ao  <span>Helpets</span></h1>
-                <p>faça login e encontre um amigo de 4 patas!</p>
+                <h1>Bem Vindo ao  <span className="span">Helpets!</span> <p>faça login e encontre um amigo de 4 patas!</p></h1>
                 <InputDefault
                     icon={<AiOutlineMail />}
                     placeholder="Digite seu email..."
-                    type="text"
+                    type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -78,18 +94,27 @@ const Login = () => {
 
                 />
                 <br></br>
-                <Button type="submit" onClick={signIn}>
-                    <Link to="/home" >
-                        Entrar
-                    </Link>
-                </Button>
+                <BotaoCustomizado type="submit" onClick={signIn} >
+                    Entrar
+                </BotaoCustomizado>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <br />
-                <Link to="/cadastro" >
-                    Não possui cadatro? <span> cadastre-se aqui</span>
+                <Link to="/cadastro"  >
+                    Não possui cadastro? <span className="span"> cadastre-se aqui</span>
                 </Link>
             </div>
 
-            <AiOutlineMail />
         </form >
 
 

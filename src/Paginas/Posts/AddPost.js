@@ -8,7 +8,6 @@ import 'firebase/compat/storage';
 
 
 function AddPost({ username }) {
-    // const [image, setImage] = useState(null);
     const [image, setImage] = useState(null);
     const [caption, setCaption] = useState('');
     const [progress, setProgress] = useState(0);
@@ -56,7 +55,7 @@ function AddPost({ username }) {
         < div className="imagesupload">
 
 
-            <h2 style={{ textAlign: 'center', margin: '15px' }}>Add New post</h2>
+            <h2 style={{ textAlign: 'center', margin: '15px' }}>adiconar novo post</h2>
 
 
             <input className='file-input' type="file" onChange={handleChange} />
@@ -66,7 +65,7 @@ function AddPost({ username }) {
 
             < progress className="progress" value={progress} max="100" />
             <Button variant="contained" color='primary' onClick={handleUpload}>
-                ADD POST
+                adiocnar post
             </Button>
 
 

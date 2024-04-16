@@ -1,0 +1,45 @@
+@import "../../variables.scss";
+
+.background-div {
+    width: 100%;
+    height: 100vh;
+    /* ou a altura desejada */
+    background-color: white;
+    /* Cor de fundo da parte superior */
+    position: relative;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    background: linear-gradient(to bottom right, var(--cor--principal) 50%, white 50%);
+}
+
+
+.cadastro_container {
+    z-index: 1;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+
+    span {
+        color: var(--cor--principal);
+    }
+
+    .cadastro_fields {
+        width: 40%;
+        background-color: white;
+        border: 7px solid var(--cor--principal);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        border-radius: var(--borda--arrendodada2);
+        padding: 30px;
+        height: 500px;
+
+        .h1_cadastro {
+            margin-top: -1%;
+        }
+    }
+}

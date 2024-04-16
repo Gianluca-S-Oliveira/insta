@@ -9,12 +9,13 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 
-function Posts({ postId, user, userName, caption, imageURL }) {
+function Posts({ postId, user, userName, caption, imageURL, numero }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [editComment, setEditComment] = useState('');
     const [commentID, setCommentID] = useState('');
     const [show, setShow] = useState(false);
+    const [postTimestamp, setPostTimestamp] = useState(null); // Estado para armazenar o timestamp do post
 
     useEffect(() => {
         let unsubscribe;
@@ -36,11 +37,27 @@ function Posts({ postId, user, userName, caption, imageURL }) {
         };
     }, [postId]);
 
+    useEffect(() => {
+        // Consulta para obter o timestamp do post
+        if (postId) {
+            db.collection("posts").doc(postId).get()
+                .then(doc => {
+                    if (doc.exists) {
+                        setPostTimestamp(doc.data().timestamp);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao obter o timestamp do post:", error);
+                });
+        }
+    }, [postId]);
+
     const postComment = (event) => {
         event.preventDefault();
         db.collection("posts").doc(postId).collection("comments").add({
             text: newComment,
             username: user.displayName,
+            numero: user.phoneNumber,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
         setNewComment('');
@@ -62,8 +79,14 @@ function Posts({ postId, user, userName, caption, imageURL }) {
         setShow(false);
     };
 
+    useEffect(() => {
+        console.log("Informações do Usuário:", user);
+    }, [user]);
+
     return (
         <div className="post">
+
+
             <div className="post__header">
                 <Avatar
                     className="post__avatar"
@@ -71,6 +94,11 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     src=" "
                 />
                 <h3>{userName}</h3>
+                {postTimestamp && (
+                    <p className="post__timestamp">
+                        Postado em: {new Date(postTimestamp.toDate()).toLocaleString()}
+                    </p>
+                )}
             </div>
 
             <img
@@ -79,7 +107,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
             />
 
             <p className="post__text">
-                <b>{userName}</b> {caption}
+                <b>{userName}</b>: {caption}
             </p>
 
             <div className="post__comments">
