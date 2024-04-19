@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { storage, db } from "../../firebase"
+import { storage, db } from "../../../firebase"
 import { TextField, Button } from '@material-ui/core'
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 import 'firebase/compat/storage';
 
 
-
+import "./novoPost.scss"
 function AddPost({ username }) {
     const [image, setImage] = useState(null);
     const [caption, setCaption] = useState('');

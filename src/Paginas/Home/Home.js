@@ -5,9 +5,8 @@ import { Button, Input } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { db, auth } from "../../firebase";
 import 'firebase/compat/auth';
-import Posts from '../Posts/Posts';
-import AddPost from '../Posts/AddPost';
-import { Edit } from '@material-ui/icons';
+import Posts from '../Posts/PostsList/Posts';
+import AddPost from '../Posts/NewPost/AddPost';
 
 
 function getModalStyle() {
