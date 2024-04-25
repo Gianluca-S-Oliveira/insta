@@ -5,7 +5,6 @@ import { BiAdjust } from "react-icons/bi";
 
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from "@material-ui/core/Modal";
 import BotaoCustomizado from "../../Componentes/Botao/botao";
 import { useNavigate } from 'react-router-dom';
 import InputDefault from "../../Componentes/Inputs/input";

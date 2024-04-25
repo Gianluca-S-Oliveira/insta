@@ -1,0 +1,132 @@
+@import "../../variables.scss";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--laranja--escuro);
+    color: #fff;
+    position: relative;
+}
+
+.logo {
+    background-color: white;
+    border-radius: 50%;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+
+    .bar {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 3px 0;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    &.open {
+        .bar:first-child {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .bar:last-child {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .bar:nth-child(2) {
+            opacity: 0;
+        }
+    }
+}
+
+.menu {
+    display: flex;
+
+    ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin-right: 20px;
+            gap: 30px;
+            display: flex;
+
+            a {
+                color: #fff;
+                text-decoration: none;
+                position: relative;
+                margin: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                font-size: 1.1rem;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: -3px;
+                    width: 0;
+                    /* Inicia com largura zero */
+                    height: 3px;
+                    background-color: #ffcc00;
+                    /* Cor da progress bar */
+                    transition: width 0.3s ease;
+                    /* Animação da largura */
+                }
+
+                &:hover:after {
+                    width: 100%;
+                    /* Aumenta a largura ao passar o mouse */
+                }
+            }
+        }
+    }
+
+    &.open {
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+
+        ul {
+            flex-direction: column;
+
+            li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu {
+        display: none;
+
+        &.open {
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.imagesupload {
+    background-color: rgb(193, 193, 193);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    margin: auto;
+    border-radius: 16px;
+    padding: 20px;
+    justify-content: center;
+
+    .progress {
+        width: 300px;
+        padding: 8px;
+        margin: 10px;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .imagens_container {
+        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .file-input {
+            opacity: -1;
+        }
+    }
+
+    .post_input {
+        background-color: red;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+
+        .name {}
+    }
+}
