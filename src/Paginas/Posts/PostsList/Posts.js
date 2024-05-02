@@ -1,3 +1,6 @@
+import { AiFillHeart } from "react-icons/ai";
+import { BiTime } from "react-icons/bi";
+import { IoTime } from "react-icons/io";
 import { FiMail } from "react-icons/fi";
 import { RiTimeFill } from "react-icons/ri";
 import { AiOutlineComment } from "react-icons/ai";
@@ -29,6 +32,8 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
     const [show, setShow] = useState(false);
     const [postTimestamp, setPostTimestamp] = useState(null); // Estado para armazenar o timestamp do post
     const [timeAgo, setTimeAgo] = useState('');
+    const [liked, setLiked] = useState(false); // Estado para controlar se o post foi curtido
+
 
     useEffect(() => {
         let unsubscribe;
@@ -116,59 +121,75 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
     useEffect(() => {
         console.log("Informações do Usuário:", user.email);
     }, [user]);
-
+    const toggleCurtida = () => {
+        setLiked(!liked);
+    };
     return (
         <div className="post">
-            {user.displayName === userName && (
-                <DeleteForeverIcon
-                    style={{ color: 'red', cursor: 'pointer' }}
-                    onClick={() => {
-                        db.collection("posts")
-                            .doc(postId).delete()
-                    }}
-                />
-            )}
+            <div className="excluir">
+                {user.displayName === userName && (
+                    <DeleteForeverIcon
+                        className="icon"
+                        style={{ color: 'red', cursor: 'pointer' }}
+                        onClick={() => {
+                            db.collection("posts")
+                                .doc(postId).delete()
+                        }}
+                    />
+                )}
+            </div>
+
 
             <div className="post__header">
                 <div className='user_info'>
-                    <div>
+                    <div className="name">
                         <Avatar
                             className="post__avatar"
                             alt={userName}
                             src=" "
                             style={{ backgroundColor: getColorForUser(userName) }} // Chamando a função getColorForUser com o nome de usuário
                         />
-                        <h3>{userName}</h3>
+                        <h3>{userName.substr(0, 1).toUpperCase() + userName.substr(1, userName.length)}</h3>
                     </div>
 
 
-                    <a href={`https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new`}>
-                        <button><FiMail /></button>
+                    <a href={`https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new`} target="_blank">
+                        <button><FiMail className="email_icone" /></button>
                     </a>
                 </div>
-                <p className="post__text">
+
+
+            </div>
+            <div className="post__text" >
+                <p >
                     {caption}
                 </p>
-
-            </div> {
-                postTimestamp && (
-                    <p className="post__timestamp">
-                        Postado {timeAgo}
-                    </p>
-                )
-            }
-            <div className="image_container<RiTimeFill />">
-                <img
-                    className="post__image"
-                    src={imageURL}
-                />
             </div>
 
-            <div>
-                <div>
-                    <AiOutlineHeart />Curtidas
+            <div className="image_container">
+                <div className="time">
+                    {
+                        postTimestamp && (
+                            <p className="post__timestamp">
+                                <BiTime />     Postado {timeAgo}
+                            </p>
+                        )
+                    }
+                    <img
+                        className="post__image"
+                        src={imageURL}
+                    />
                 </div>
-                <div>
+
+            </div>
+
+            <div className="interaciotn">
+
+                <span className="corazon" onClick={toggleCurtida} style={{ fill: liked ? 'var(--laranja--escuro)' : 'black', color: liked ? 'var(--laranja--escuro)' : 'red' }} >
+                    {liked ? <BiHeart /> : < AiFillHeart />}Curtir
+                </span>
+                <div onClick={() => document.getElementById('commentInput').onfocus()}>
+
                     <AiOutlineComment />Comentar
                 </div>
 
@@ -176,27 +197,33 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
             </div>
 
 
-            <div className="post__comments">
+            <div className="post__comments" style={{ width: "90%" }}>
                 {comments.map(({ id, comment }) => (
                     <p key={id}>
-                        <b>{comment.username}</b>: &nbsp;{comment.text}
-                        {(comment.username === user?.displayName || user?.displayName === userName) && (
-                            <>
-                                <EditIcon
-                                    style={{ color: 'blue', cursor: 'pointer' }}
-                                    onClick={() => handleEdit(id, comment.text)}
-                                />
-                                <DeleteOutlineIcon
-                                    style={{ color: 'blue', cursor: 'pointer' }}
-                                    onClick={() => {
-                                        db.collection("posts")
-                                            .doc(postId)
-                                            .collection("comments")
-                                            .doc(id).delete()
-                                    }}
-                                />
-                            </>
-                        )}
+                        <div className="name_coment">
+                            <b >  {comment.username.substr(0, 1).toUpperCase() + comment.username.substr(1, comment.username.length)}  </b>{(comment.username === user?.displayName || user?.displayName === userName) && (
+                                <p>  (você)</p>
+                            )}: &nbsp;{comment.text}   {(comment.username === user?.displayName || user?.displayName === userName) && (
+                                <>
+                                    <EditIcon
+                                        style={{ color: 'orange', cursor: 'pointer' }}
+                                        onClick={() => handleEdit(id, comment.text)}
+                                    />
+                                    <DeleteOutlineIcon
+                                        style={{ color: 'red', cursor: 'pointer' }}
+                                        onClick={() => {
+                                            db.collection("posts")
+                                                .doc(postId)
+                                                .collection("comments")
+                                                .doc(id).delete()
+                                        }}
+                                    />
+                                </>
+                            )}
+                        </div>
+
+
+
                     </p>
                 ))}
             </div>
@@ -205,8 +232,9 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
                     <form className="post__commentbox">
                         <input
                             className="post__input"
+                            id="commentInput"
                             type="text"
-                            placeholder="Edit comment..."
+                            placeholder="editar comentario..."
                             value={editComment}
                             onChange={(e) => setEditComment(e.target.value)}
                         />
@@ -216,7 +244,7 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
                             type="submit"
                             onClick={updateComment}
                         >
-                            Update
+                            Editar
                         </Button>
                     </form>
                 )
@@ -227,7 +255,7 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
                         <input
                             className="post__input"
                             type="text"
-                            placeholder="Add a comment..."
+                            placeholder="Comente essa publicação...."
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
                         />

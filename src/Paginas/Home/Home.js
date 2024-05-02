@@ -51,7 +51,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="app">
+        <div className="app" style={{ backgroundColor: '#DCDCDC' }}>
 
             {user && user.displayName ? (
                 <>
