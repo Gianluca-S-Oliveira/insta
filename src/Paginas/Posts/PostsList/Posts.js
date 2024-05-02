@@ -197,7 +197,7 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
             </div>
 
 
-            <div className="post__comments" style={{ width: "90%" }}>
+            <div className="post__comments" >
                 {comments.map(({ id, comment }) => (
                     <p key={id}>
                         <div className="name_coment">
