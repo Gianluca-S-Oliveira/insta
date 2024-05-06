@@ -1,0 +1,110 @@
+.justificativa-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
+
+    .justificativas {
+        width: 80%;
+        display: flex;
+        margin: auto;
+    }
+}
+
+.image-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .img {
+        /* Estilos para a imagem dentro de .image-container */
+    }
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+
+    h2 {
+        margin-bottom: 10px;
+        font-size: 2rem;
+        color: var(--cor--principal);
+        /* Certifique-se de definir esta variável */
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+}
+
+/* Estilos para o Slider */
+.containerIImg img {
+    width: 100%;
+    /* Para garantir que a imagem ocupe toda a largura do contêiner */
+    height: 500px;
+    /* Para manter a proporção da imagem */
+    display: block;
+    /* Para garantir que a imagem fique alinhada corretamente */
+    margin: 0 auto;
+    /* Para alinhar as imagens no centro horizontalmente */
+    max-width: 100%;
+    /* Define a largura máxima da imagem */
+    height: 100%;
+    gap: 30px;
+    border-radius: 20px;
+    /* Define a altura máxima da imagem */
+}
+
+/* Estilos para o contêiner que envolve o carrossel de imagens */
+.images {
+    margin-top: 20px;
+    /* Espaçamento acima do carrossel */
+    width: 80%;
+    /* Largura do carrossel */
+    margin: 0 auto;
+
+    /* Centraliza o carrossel horizontalmente */
+    h2 {
+        font-size: 2.3rem;
+        color: var(--cor--principal);
+        margin: 2px;
+    }
+
+    p {
+        font-size: 20px;
+        margin-bottom: 120px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .image-container {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .img {
+            width: 100%;
+            margin: auto;
+            /* Estilos para a imagem dentro de .image-container */
+        }
+    }
+
+    .justificativa-container {
+
+        .justificativas {
+            flex-direction: column;
+
+        }
+    }
+}

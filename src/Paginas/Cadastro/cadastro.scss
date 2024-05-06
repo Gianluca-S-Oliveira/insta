@@ -11,6 +11,7 @@
     position: absolute;
     z-index: -1;
     background: linear-gradient(to bottom right, var(--cor--principal) 50%, white 50%);
+
 }
 
 
@@ -21,6 +22,8 @@
     align-items: center;
     justify-content: center;
     height: 90vh;
+
+
 
     span {
         color: var(--cor--principal);
@@ -37,6 +40,12 @@
         border-radius: var(--borda--arrendodada2);
         padding: 30px;
         height: 500px;
+
+        @media screen and (max-width: 768px) {
+
+            width: 94%;
+
+        }
 
         .h1_cadastro {
             margin-top: -1%;

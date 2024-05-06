@@ -1,13 +1,73 @@
 .imagesupload {
-    background-color: rgb(193, 193, 193);
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 30%;
     margin: auto;
     border-radius: 16px;
-    padding: 20px;
+    padding: 30px 20px;
     justify-content: center;
+    margin-top: 30px;
+
+    @media screen and (max-width: 768px) {
+
+        width: 80%;
+
+    }
+
+    .acoes {
+        width: 90%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-bottom: 30px;
+
+        .emojis {
+            font-size: 20px;
+            color: var(--laranja--escuro);
+            justify-content: center;
+
+            &:hover {
+                cursor: pointer;
+                color: var(--cor--principal);
+            }
+
+            p {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .foto {
+            color: var(--laranja--escuro);
+
+            font-size: 22px;
+            justify-content: center;
+            flex-direction: column;
+
+            &:hover {
+                cursor: pointer;
+                color: var(--cor--principal);
+            }
+
+            .btnPerson {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 
     .progress {
         width: 300px;
@@ -17,24 +77,31 @@
         border-radius: 10px;
     }
 
-    .imagens_container {
+    .file-input {
+        opacity: -1;
+        // z-index: -1;
+        position: absolute;
+        margin-top: 10px;
         background-color: red;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .file-input {
-            opacity: -1;
-        }
     }
 
     .post_input {
-        background-color: red;
         display: flex;
         gap: 10px;
+        width: 100%;
         justify-content: center;
         align-items: center;
+        border-radius: 10px;
 
-        .name {}
+        input {
+            width: 100%;
+        }
+
+        .name {
+            background-color: var(--laranja--escuro);
+            padding: 10px 20px;
+            border-radius: 100%;
+            color: white;
+        }
     }
 }

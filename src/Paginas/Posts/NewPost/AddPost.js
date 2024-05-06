@@ -67,42 +67,48 @@ function AddPost({ username }) {
     return (
         <div className="imagesupload">
             <br />
-            <p>Olá {username.substr(0, 1).toUpperCase() + username.substr(1, username.length)}, como irá ajudar hoje?</p>
             <div className="post_input">
                 <h2 className="name">{username.substr(0, 1).toUpperCase()}</h2>
-                <InputDefault id="filled-basic" label="Caption here" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />
+                <InputDefault id="filled-basic" placeholder={`Olá ${username.substr(0, 1).toUpperCase() + username.substr(1, username.length)}, como irá ajudar hoje?`} label="Caption here" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />
             </div>
 
             <br />
-            <p onClick={toggleEmojis}><BsFillEmojiSmileFill /> Emoji</p>
-            {showEmojis && (
-                <div className="emoji-modal">
-                    <span className="emoji" role="img" aria-label="Smile Emoji" onClick={() => addEmoji('😊')}>😊</span>
-                    <span className="emoji" role="img" aria-label="Heart Emoji" onClick={() => addEmoji('❤️')}>❤️</span>
-                    <span className="emoji" role="img" aria-label="Star Emoji" onClick={() => addEmoji('⭐️')}>⭐️</span>
-                    <span className="emoji" role="img" aria-label="Crying Emoji" onClick={() => addEmoji('😢')}>😢</span>
-                    <span className="emoji" role="img" aria-label="Thinking Emoji" onClick={() => addEmoji('🤔')}>🤔</span>
-                    <span className="emoji" role="img" aria-label="Heart Eyes Emoji" onClick={() => addEmoji('😍')}>😍</span>
-                    <span className="emoji" role="img" aria-label="Thumbs Up Emoji" onClick={() => addEmoji('👍')}>👍</span>
-                    <span className="emoji" role="img" aria-label="Thumbs Down Emoji" onClick={() => addEmoji('👎')}>👎</span>
-                    <span className="emoji" role="img" aria-label="Dog Emoji" onClick={() => addEmoji('🐶')}>🐶</span>
-                    <span className="emoji" role="img" aria-label="Cat Emoji" onClick={() => addEmoji('🐱')}>🐱</span>
-                    <span className="emoji" role="img" aria-label="Paw Prints Emoji" onClick={() => addEmoji('🐾')}>🐾</span>
-                    <span className="emoji" role="img" aria-label="Fish Emoji" onClick={() => addEmoji('🐟')}>🐟</span>
-                    <span className="emoji" role="img" aria-label="Bird Emoji" onClick={() => addEmoji('🐦')}>🐦</span>
-                    <span className="emoji" role="img" aria-label="Rabbit Emoji" onClick={() => addEmoji('🐰')}>🐰</span>
-                    <span className="emoji" role="img" aria-label="Hamster Emoji" onClick={() => addEmoji('🐹')}>🐹</span>
-                    {/* Adicione mais emojis conforme necessário */}
+            <div className='acoes'>
+                <div className='emojis'>
+                    <p onClick={toggleEmojis} ><BsFillEmojiSmileFill /> Emoji</p>
+                    {showEmojis && (
+                        <div className="emoji-modal">
+                            <span className="emoji" role="img" aria-label="Smile Emoji" onClick={() => addEmoji('😊')}>😊</span>
+                            <span className="emoji" role="img" aria-label="Heart Emoji" onClick={() => addEmoji('❤️')}>❤️</span>
+                            <span className="emoji" role="img" aria-label="Star Emoji" onClick={() => addEmoji('⭐️')}>⭐️</span>
+                            <span className="emoji" role="img" aria-label="Crying Emoji" onClick={() => addEmoji('😢')}>😢</span>
+                            <span className="emoji" role="img" aria-label="Thinking Emoji" onClick={() => addEmoji('🤔')}>🤔</span>
+                            <span className="emoji" role="img" aria-label="Heart Eyes Emoji" onClick={() => addEmoji('😍')}>😍</span>
+                            <span className="emoji" role="img" aria-label="Thumbs Up Emoji" onClick={() => addEmoji('👍')}>👍</span>
+                            <span className="emoji" role="img" aria-label="Thumbs Down Emoji" onClick={() => addEmoji('👎')}>👎</span>
+                            <span className="emoji" role="img" aria-label="Dog Emoji" onClick={() => addEmoji('🐶')}>🐶</span>
+                            <span className="emoji" role="img" aria-label="Cat Emoji" onClick={() => addEmoji('🐱')}>🐱</span>
+                            <span className="emoji" role="img" aria-label="Paw Prints Emoji" onClick={() => addEmoji('🐾')}>🐾</span>
+                            <span className="emoji" role="img" aria-label="Fish Emoji" onClick={() => addEmoji('🐟')}>🐟</span>
+                            <span className="emoji" role="img" aria-label="Bird Emoji" onClick={() => addEmoji('🐦')}>🐦</span>
+                            <span className="emoji" role="img" aria-label="Rabbit Emoji" onClick={() => addEmoji('🐰')}>🐰</span>
+                            <span className="emoji" role="img" aria-label="Hamster Emoji" onClick={() => addEmoji('🐹')}>🐹</span>
+                            {/* Adicione mais emojis conforme necessário */}
+                        </div>
+                    )}
+
                 </div>
-            )}
+                <div className='foto'>
+                    <label htmlFor="teste" className="btnPerson" onChange={handleChange}> <AiFillCamera /> Foto</label>
+                    <input id="teste" className='file-input' type="file" />
+                </div>
 
-            <label htmlFor="teste" className="btnPerson"><AiFillCamera /> Foto</label>
-            <input id="teste" className='file-input' type="file" onChange={handleChange} />
 
-            <BotaoCustomizado variant="contained" color='primary' onClick={handleUpload}>
+            </div>
+
+            <BotaoCustomizado variant="contained" color='primary' onClick={handleUpload} className='button'>
                 Publicar <BsFillArrowRightSquareFill />
             </BotaoCustomizado>
-            {/* <progress className="progress" value={progress} max="100" /> */}
         </div>
     );
 }

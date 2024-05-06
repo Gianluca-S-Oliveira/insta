@@ -1,3 +1,4 @@
+import { BiLogOut } from "react-icons/bi";
 import { FaCrown } from "react-icons/fa";
 import { HiOutlineViewList } from "react-icons/hi";
 import { CgAddR } from "react-icons/cg";
@@ -36,10 +37,11 @@ function Header({ username }) {
                     <li><a href="/premium"><div><FaCrown /></div>Premium</a></li>
                 </ul>
             </nav>
-            <div>{username}
+
+            <div className="sair">
                 {username ? (
 
-                    <Link to="/" onClick={() => auth.signOut()}>sair</Link>
+                    <Link to="/" onClick={() => auth.signOut()}><BiLogOut /></Link>
                 ) : (
                     <div>
 
