@@ -7,7 +7,7 @@ import Posts from '../Posts/PostsList/Posts';
 import AddPost from '../Posts/NewPost/AddPost';
 
 import Header from "../../Componentes/Header/header";
-
+import Footer from '../../Componentes/Footer/';
 
 const Home = () => {
 
@@ -51,46 +51,50 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="app" style={{ backgroundColor: '#DCDCDC' }}>
+        <>
 
-            {user && user.displayName ? (
-                <>
-                    <Header username={user.displayName} />
-                </>
-            ) : (
-                <div className='unauth'>
-                </div>
-            )}
+            <div className="app" style={{ backgroundColor: '#DCDCDC' }}>
+
+                {user && user.displayName ? (
+                    <>
+                        <Header username={user.displayName} />
+                    </>
+                ) : (
+                    <div className='unauth'>
+                    </div>
+                )}
 
 
 
 
-            {user && user.displayName ? (
-                <>
-                    <AddPost username={user.displayName} />
-                </>
-            ) : (
-                <div className='unauth'>
-                </div>
-            )}
+                {user && user.displayName ? (
+                    <>
+                        <AddPost username={user.displayName} />
+                    </>
+                ) : (
+                    <div className='unauth'>
+                    </div>
+                )}
 
-            <div className="app__posts">
-                <div className="app__postright">
+                <div className="app__posts">
+                    <div className="app__postright">
 
-                    <br />
-                    {posts.map(({ id, post }) => (
-                        <Posts
-                            key={id}
-                            postId={id}
-                            user={user}
-                            userName={post.userName}
-                            caption={post.caption}
-                            imageURL={post.imageURL}
-                        />
-                    ))}
+                        <br />
+                        {posts.map(({ id, post }) => (
+                            <Posts
+                                key={id}
+                                postId={id}
+                                user={user}
+                                userName={post.userName}
+                                caption={post.caption}
+                                imageURL={post.imageURL}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+            <Footer></Footer>
+        </>
     )
 }
 

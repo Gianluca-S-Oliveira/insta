@@ -9,7 +9,7 @@ import img2 from "../../assets/imagens/images2.jpg"
 import img3 from "../../assets/imagens/img3.PNG"
 import img4 from "../../assets/imagens/img2.PNG"
 import img5 from "../../assets/imagens/img5.PNG"
-
+import Footer from '../../Componentes/Footer/';
 import Header from "../../Componentes/Header/header";
 import "./justificativa.scss"
 import Slider from "react-slick";
@@ -122,7 +122,7 @@ function Justificativa() {
                     </div>
                 </Slider>
             </section>
-
+            <Footer></Footer>
         </>
 
 

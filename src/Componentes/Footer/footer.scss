@@ -1,0 +1,31 @@
+.footer-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--laranja--escuro)
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qr-code {
+    margin-right: 20px;
+    /* Espaçamento entre o QR Code e o texto */
+}
+
+.footer-text {
+    text-align: left;
+}
+
+.footer-text p {
+    margin-bottom: 10px;
+    /* Espaçamento abaixo do texto */
+}
+
+.footer-text img {
+    width: 100px;
+    /* Tamanho do logo da FIAP */
+}
