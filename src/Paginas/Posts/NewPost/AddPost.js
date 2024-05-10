@@ -9,11 +9,13 @@ import BotaoCustomizado from "../../../Componentes/Botao/botao";
 import InputDefault from "../../../Componentes/Inputs/input";
 
 import "./novoPost.scss";
+import Posts from './../PostsList/Posts';
 
 function AddPost({ username }) {
     const [image, setImage] = useState(null);
     const [caption, setCaption] = useState('');
     const [progress, setProgress] = useState(0);
+
     const [showEmojis, setShowEmojis] = useState(false);
 
     const handleChange = (e) => {
@@ -30,6 +32,9 @@ function AddPost({ username }) {
         setCaption(prevCaption => prevCaption + emoji);
         setShowEmojis(false);
     };
+
+
+
 
     const handleUpload = () => {
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -56,13 +61,15 @@ function AddPost({ username }) {
                             caption: caption,
                             imageURL: url,
                             userName: username
-                        });
-                    });
+                        })
+                    })
+
             }
-        );
-        setCaption('');
-        setImage(null);
-    };
+        )
+        setCaption(' ')
+        setImage(null)
+    }
+    const inputElement = document.getElementById('teste');
 
     return (
         <div className="imagesupload">
@@ -93,19 +100,32 @@ function AddPost({ username }) {
                             <span className="emoji" role="img" aria-label="Bird Emoji" onClick={() => addEmoji('🐦')}>🐦</span>
                             <span className="emoji" role="img" aria-label="Rabbit Emoji" onClick={() => addEmoji('🐰')}>🐰</span>
                             <span className="emoji" role="img" aria-label="Hamster Emoji" onClick={() => addEmoji('🐹')}>🐹</span>
-                            {/* Adicione mais emojis conforme necessário */}
+
                         </div>
                     )}
 
                 </div>
                 <div className='foto'>
+                    <input style={{ opacity: -1 }} className='file-input' type="file" id="teste" onChange={handleChange} />
+                    {inputElement !== null && inputElement.addEventListener('change', () => {
+                        // Verificar se há arquivos selecionados
+                        if (inputElement.files.length > 0) {
+                            // Exibir o nome do arquivo selecionado no console
+                            console.log('Nome do arquivo:', inputElement.files[0].name);
+                            // Se você precisar de mais informações sobre o arquivo, pode acessar outras propriedades como size, type, lastModified, etc.
+                        } else {
+                            console.log('Nenhum arquivo selecionado.');
+                        }
+                    })}
+
                     <label htmlFor="teste" className="btnPerson" onChange={handleChange}> <AiFillCamera /> Foto</label>
-                    <input id="teste" className='file-input' type="file" />
+
                 </div>
 
-
             </div>
-
+            {inputElement !== null && inputElement.files.length > 0 && (
+                <p>Nome do arquivo: {inputElement.files[0].name}</p>
+            )}
             <BotaoCustomizado variant="contained" color='primary' onClick={handleUpload} className='button'>
                 Publicar <BsFillArrowRightSquareFill />
             </BotaoCustomizado>

@@ -72,13 +72,14 @@
     .progress {
         width: 300px;
         padding: 8px;
+
         margin: 10px;
-        background-color: white;
+        background-color: rgb(255, 255, 255);
         border-radius: 10px;
     }
 
     .file-input {
-        opacity: -1;
+        // opacity: -1;
         // z-index: -1;
         position: absolute;
         margin-top: 10px;
