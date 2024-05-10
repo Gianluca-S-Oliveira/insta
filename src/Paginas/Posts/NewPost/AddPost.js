@@ -108,11 +108,8 @@ function AddPost({ username }) {
                 <div className='foto'>
                     <input style={{ opacity: -1 }} className='file-input' type="file" id="teste" onChange={handleChange} />
                     {inputElement !== null && inputElement.addEventListener('change', () => {
-                        // Verificar se há arquivos selecionados
                         if (inputElement.files.length > 0) {
-                            // Exibir o nome do arquivo selecionado no console
                             console.log('Nome do arquivo:', inputElement.files[0].name);
-                            // Se você precisar de mais informações sobre o arquivo, pode acessar outras propriedades como size, type, lastModified, etc.
                         } else {
                             console.log('Nenhum arquivo selecionado.');
                         }
