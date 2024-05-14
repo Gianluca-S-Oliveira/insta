@@ -27,15 +27,16 @@
     flex-direction: column;
     justify-content: center;
     width: 50%;
+    background-color: red;
 
-    h2 {
+    .title {
         margin-bottom: 10px;
         font-size: 2rem;
         color: var(--cor--principal);
         /* Certifique-se de definir esta variável */
     }
 
-    p {
+    .p-justify {
         font-size: 18px;
         line-height: 1.5;
     }

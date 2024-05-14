@@ -1,0 +1,40 @@
+.pagamento-container {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        color: var(--cor--principal);
+        font-size: 2rem;
+        font-weight: 700;
+        width: 80%;
+        margin: 5% auto;
+        text-align: center;
+
+
+    }
+
+    .qr-code {
+        height: 400px;
+        background-color: red;
+        width: 400px;
+        background-color: black;
+        margin: auto;
+        display: flex;
+        overflow: hidden;
+        border: 2px solid var(--cor--principal);
+        border-radius: 20px;
+
+        img {
+
+            object-fit: cover;
+            /* Redimensiona a imagem para caber na div */
+            width: 100%;
+            /* Garante que a imagem ocupe toda a largura da div */
+            height: 100%;
+            /* Garante que a imagem ocupe toda a altura da div */
+        }
+    }
+
+}

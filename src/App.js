@@ -6,6 +6,7 @@ import Cadastro from "./Paginas/Cadastro/cadastro";
 import Posts from './Paginas/Posts/PostsList/Posts';
 import Justificativa from './Paginas/Justificativa';
 import Premium from './Paginas/Premium';
+import Pagamento from './Paginas/Pagamento';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/posts" element={<Posts />} />
         <Route path="/justificativa" element={<Justificativa />} />
         <Route path="/premium" element={<Premium />} />
+        <Route path="/pagamento" element={<Pagamento />} />
       </Routes>
     </BrowserRouter>
   );

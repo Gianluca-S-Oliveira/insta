@@ -173,10 +173,10 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
                             <h3>{userName.substr(0, 1).toUpperCase() + userName.substr(1, userName.length)}</h3>
                         </div>
 
-                        <p className="p-copy" onClick={copiarEmail}>
+                        <h1 className="p-copy" onClick={copiarEmail}>
                             {user.email}
                             <FaRegCopy onClick={copiarEmail} />
-                        </p>
+                        </h1>
                     </div>
 
 
