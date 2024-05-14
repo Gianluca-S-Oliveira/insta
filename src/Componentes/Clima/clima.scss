@@ -1,0 +1,53 @@
+.clima-container {
+    width: 250px;
+    margin: 4% auto;
+    padding: 20px;
+    border: 3px solid var(--cor--principal);
+    background-color: white;
+    border-radius: 15px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 1268px) {
+
+        display: none;
+
+    }
+}
+
+.cidade-input {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #227225;
+    font-weight: 700;
+}
+
+.buscar-btn {
+    background-color: var(--cor--principal);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90%;
+    margin: 0px auto;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.dados-clima {
+    margin-top: 20px;
+
+    strong {
+        color: var(--cor--principal);
+        font-weight: 900;
+    }
+}
+
+/* Add more styles as needed */

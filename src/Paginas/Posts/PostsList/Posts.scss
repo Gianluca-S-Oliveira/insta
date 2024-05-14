@@ -5,10 +5,18 @@
     justify-content: center;
     align-items: center;
     margin: 30px auto;
-    width: 30%;
+    width: 550px;
     border-radius: 16px;
     border: 2px solid #B6B6B6;
     padding: 20px;
+
+    @media screen and (max-width: 768px) {
+
+        width: 60%;
+        margin-top: 10px;
+        margin-left: 18%;
+
+    }
 
     .excluir {
         width: 90%;
@@ -67,8 +75,16 @@
             .name {
 
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                justify-content: left;
+                flex-direction: column;
+
+                .p-copy {
+                    font-size: 1.2rem;
+                    color: var(--laranja--escuro);
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
             }
 
             .post__avatar {

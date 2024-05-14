@@ -1,3 +1,6 @@
+import { FaRegCopy } from "react-icons/fa";
+import { AiFillCopy } from "react-icons/ai";
+import { AiTwotoneCopy } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { BiTime } from "react-icons/bi";
 import { IoTime } from "react-icons/io";
@@ -14,6 +17,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import firebase from 'firebase/compat/app';
+import { ToastContainer, toast } from 'react-toastify';
 import "firebase/compat/firestore";
 import "./Posts.scss"
 
@@ -70,7 +74,7 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
                         const seconds = Math.floor(difference / 1000);
 
                         if (seconds < 60) {
-                            setTimeAgo('Postado Agora mesmo');
+                            setTimeAgo(' Agora mesmo');
                         } else if (seconds < 3600) {
                             const minutes = Math.floor(seconds / 60);
                             setTimeAgo(`há ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`);
@@ -124,6 +128,22 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
     const toggleCurtida = () => {
         setLiked(!liked);
     };
+    const copiarEmail = () => {
+        navigator.clipboard.writeText(user.email).then(() => {
+            toast.success("E-mail copiado para a área de transferência!", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
+        }).catch(() => {
+            alert("Erro ao copiar e-mail.");
+        });
+    };
     return (
         <div className="post">
             <div className="excluir">
@@ -143,13 +163,20 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
             <div className="post__header">
                 <div className='user_info'>
                     <div className="name">
-                        <Avatar
-                            className="post__avatar"
-                            alt={userName}
-                            src=" "
-                            style={{ backgroundColor: getColorForUser(userName) }} // Chamando a função getColorForUser com o nome de usuário
-                        />
-                        <h3>{userName.substr(0, 1).toUpperCase() + userName.substr(1, userName.length)}</h3>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <Avatar
+                                className="post__avatar"
+                                alt={userName}
+                                src=" "
+                                style={{ backgroundColor: getColorForUser(userName) }} // Chamando a função getColorForUser com o nome de usuário
+                            />
+                            <h3>{userName.substr(0, 1).toUpperCase() + userName.substr(1, userName.length)}</h3>
+                        </div>
+
+                        <p className="p-copy" onClick={copiarEmail}>
+                            {user.email}
+                            <FaRegCopy onClick={copiarEmail} />
+                        </p>
                     </div>
 
 
@@ -271,6 +298,18 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
                     </form>
                 )
             }
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div >
     );
 }

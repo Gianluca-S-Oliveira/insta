@@ -5,9 +5,11 @@ import { db, auth } from "../../firebase";
 import 'firebase/compat/auth';
 import Posts from '../Posts/PostsList/Posts';
 import AddPost from '../Posts/NewPost/AddPost';
-
+import "./home.scss"
 import Header from "../../Componentes/Header/header";
 import Footer from '../../Componentes/Footer/';
+import Frases from './../../Componentes/Frases/index';
+import Clima from './../../Componentes/Clima/index';
 
 const Home = () => {
 
@@ -75,22 +77,25 @@ const Home = () => {
                     <div className='unauth'>
                     </div>
                 )}
+                <div className='container_principal'>
+                    <Frases />
+                    <div className="app__posts">
+                        <div className="app__postright">
 
-                <div className="app__posts">
-                    <div className="app__postright">
-
-                        <br />
-                        {posts.map(({ id, post }) => (
-                            <Posts
-                                key={id}
-                                postId={id}
-                                user={user}
-                                userName={post.userName}
-                                caption={post.caption}
-                                imageURL={post.imageURL}
-                            />
-                        ))}
+                            <br />
+                            {posts.map(({ id, post }) => (
+                                <Posts
+                                    key={id}
+                                    postId={id}
+                                    user={user}
+                                    userName={post.userName}
+                                    caption={post.caption}
+                                    imageURL={post.imageURL}
+                                />
+                            ))}
+                        </div>
                     </div>
+                    <Clima />
                 </div>
             </div>
             <Footer></Footer>

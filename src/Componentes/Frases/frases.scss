@@ -1,0 +1,64 @@
+.frases_container {
+    border: 4px solid var(--cor--principal);
+    background-color: white;
+    max-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 250px;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 4% auto;
+
+    @media screen and (max-width: 1268px) {
+
+        display: none;
+
+    }
+
+    .img_container {
+        width: 230px;
+        overflow: hidden;
+        border-radius: 15px;
+
+        img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+    }
+}
+
+.text-container {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    h2 {
+        position: absolute;
+        transition: opacity 1s ease-in-out;
+    }
+}
+
+.fade-enter {
+    opacity: 0.01;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 1s ease-in-out;
+}
