@@ -28,21 +28,22 @@ function getColorForUser(username) {
 
     return `hsl(${hash}, 70%, 50%)`;
 }
+
 function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [editComment, setEditComment] = useState('');
     const [commentID, setCommentID] = useState('');
     const [show, setShow] = useState(false);
-    const [postTimestamp, setPostTimestamp] = useState(null); // Estado para armazenar o timestamp do post
+    const [postTimestamp, setPostTimestamp] = useState(null);
     const [timeAgo, setTimeAgo] = useState('');
-    const [liked, setLiked] = useState(false); // Estado para controlar se o post foi curtido
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         let unsubscribe;
         if (postId) {
             unsubscribe = db
-                .collection("posts")
+                .collection("3")
                 .doc(postId)
                 .collection("comments")
                 .orderBy('timestamp', 'desc')
@@ -60,11 +61,11 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
 
     useEffect(() => {
         if (postId) {
-            db.collection("posts")
+            db.collection("3")
                 .doc(postId)
                 .get()
                 .then(doc => {
-                    if (doc.exists && doc.data().timestamp) { // Verifica se o documento existe e se possui o campo timestamp
+                    if (doc.exists && doc.data().timestamp) {
                         setPostTimestamp(doc.data().timestamp);
 
                         const postDate = doc.data().timestamp.toDate();
@@ -96,7 +97,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
 
     const postComment = (event) => {
         event.preventDefault();
-        db.collection("posts").doc(postId).collection("comments").add({
+        db.collection("3").doc(postId).collection("comments").add({
             text: newComment,
             username: user.displayName,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -111,7 +112,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
     };
 
     const updateComment = () => {
-        db.collection("posts")
+        db.collection("3")
             .doc(postId)
             .collection("comments")
             .doc(commentID).update({
@@ -123,11 +124,13 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
     useEffect(() => {
         console.log("Informações do Usuário:", user.email);
     }, [user]);
+
     const toggleCurtida = () => {
         setLiked(!liked);
     };
+
     const copiarEmail = () => {
-        navigator.clipboard.writeText(user.email).then(() => {
+        navigator.clipboard.writeText(UserMail).then(() => {
             toast.success("E-mail copiado para a área de transferência!", {
                 position: "top-center",
                 autoClose: 5000,
@@ -137,14 +140,12 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-            })
+            });
         }).catch(() => {
             alert("Erro ao copiar e-mail.");
         });
     };
-    const focusCommentInput = () => {
-        commentInputRef.current.focus(); // Foca no input de comentário
-    };
+
     return (
         <div className="post">
             <div className="excluir">
@@ -153,13 +154,12 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                         className="icon"
                         style={{ color: 'red', cursor: 'pointer' }}
                         onClick={() => {
-                            db.collection("posts")
-                                .doc(postId).delete()
+                            db.collection("3")
+                                .doc(postId).delete();
                         }}
                     />
                 )}
             </div>
-
 
             <div className="post__header">
                 <div className='user_info'>
@@ -169,7 +169,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                                 className="post__avatar"
                                 alt={userName}
                                 src=" "
-                                style={{ backgroundColor: getColorForUser(userName) }} // Chamando a função getColorForUser com o nome de usuário
+                                style={{ backgroundColor: getColorForUser(userName) }}
                             />
                             <h3>{userName.substr(0, 1).toUpperCase() + userName.substr(1, userName.length)}</h3>
                         </div>
@@ -177,57 +177,45 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
 
                     </div>
 
-
                     <a href={`https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new`} target="_blank">
                         <button><FiMail className="email_icone" /></button>
                     </a>
                 </div>
-
-
             </div>
-            <div className="post__text" >
-                <p >
-                    {caption}
-                </p>
+
+            <div className="post__text">
+                <p>{caption}</p>
             </div>
 
             <div className="image_container">
                 <div className="time">
-                    {
-                        postTimestamp && (
-                            <p className="post__timestamp">
-                                <BiTime />     Postado {timeAgo}
-                            </p>
-                        )
-                    }
-                    <img
-                        className="post__image"
-                        src={imageURL}
-                    />
+                    {postTimestamp && (
+                        <p className="post__timestamp">
+                            <BiTime /> Postado {timeAgo}
+                        </p>
+                    )}
+                    <img className="post__image" src={imageURL} />
                 </div>
-
             </div>
 
             <div className="interaciotn">
-
-                <span className="corazon" onClick={toggleCurtida} style={{ fill: liked ? 'var(--laranja--escuro)' : 'black', color: liked ? 'var(--laranja--escuro)' : 'red' }} >
-                    {liked ? <BiHeart /> : < AiFillHeart />}Curtir
+                <span className="corazon" onClick={toggleCurtida} style={{ fill: liked ? 'var(--laranja--escuro)' : 'black', color: liked ? 'var(--laranja--escuro)' : 'red' }}>
+                    {liked ? <BiHeart /> : <AiFillHeart />}Curtir
                 </span>
-                <div onClick={focusCommentInput}>
+                <div onClick={() => document.getElementById('commentInput').onfocus()}>
                     <AiOutlineComment />Comentar
                 </div>
-
-
             </div>
 
-
-            <div className="post__comments" >
+            <div className="post__comments">
                 {comments.map(({ id, comment }) => (
                     <p key={id}>
                         <div className="name_coment">
-                            <b >  {comment.username.substr(0, 1).toUpperCase() + comment.username.substr(1, comment.username.length)}  </b>{(comment.username === user?.displayName || user?.displayName === userName) && (
-                                <p>  (você)</p>
-                            )}: &nbsp;{comment.text}   {(comment.username === user?.displayName || user?.displayName === userName) && (
+                            <b>{comment.username.substr(0, 1).toUpperCase() + comment.username.substr(1, comment.username.length)}</b>
+                            {(comment.username === user?.displayName || user?.displayName === userName) && (
+                                <p>(você)</p>
+                            )}: &nbsp;{comment.text}
+                            {(comment.username === user?.displayName || user?.displayName === userName) && (
                                 <>
                                     <EditIcon
                                         style={{ color: 'orange', cursor: 'pointer' }}
@@ -236,18 +224,15 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                                     <DeleteOutlineIcon
                                         style={{ color: 'red', cursor: 'pointer' }}
                                         onClick={() => {
-                                            db.collection("posts")
+                                            db.collection("3")
                                                 .doc(postId)
                                                 .collection("comments")
-                                                .doc(id).delete()
+                                                .doc(id).delete();
                                         }}
                                     />
                                 </>
                             )}
                         </div>
-
-
-
                     </p>
                 ))}
             </div>
@@ -291,7 +276,6 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                         >
                             PUBLICAR
                         </Button>
-
                     </form>
                 )
             }
