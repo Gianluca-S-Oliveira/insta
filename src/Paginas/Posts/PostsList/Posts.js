@@ -38,7 +38,6 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
     const [timeAgo, setTimeAgo] = useState('');
     const [liked, setLiked] = useState(false); // Estado para controlar se o post foi curtido
 
-
     useEffect(() => {
         let unsubscribe;
         if (postId) {
@@ -100,8 +99,6 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
         db.collection("posts").doc(postId).collection("comments").add({
             text: newComment,
             username: user.displayName,
-            useremail: user.UserMail,
-
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
         setNewComment('');
@@ -145,6 +142,9 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
             alert("Erro ao copiar e-mail.");
         });
     };
+    const focusCommentInput = () => {
+        commentInputRef.current.focus(); // Foca no input de comentário
+    };
     return (
         <div className="post">
             <div className="excluir">
@@ -174,10 +174,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                             <h3>{userName.substr(0, 1).toUpperCase() + userName.substr(1, userName.length)}</h3>
                         </div>
 
-                        <h1 className="p-copy" onClick={copiarEmail}>
-                            {useremail}
-                            <FaRegCopy onClick={copiarEmail} />
-                        </h1>
+
                     </div>
 
 
@@ -216,8 +213,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                 <span className="corazon" onClick={toggleCurtida} style={{ fill: liked ? 'var(--laranja--escuro)' : 'black', color: liked ? 'var(--laranja--escuro)' : 'red' }} >
                     {liked ? <BiHeart /> : < AiFillHeart />}Curtir
                 </span>
-                <div onClick={() => document.getElementById('commentInput').onfocus()}>
-
+                <div onClick={focusCommentInput}>
                     <AiOutlineComment />Comentar
                 </div>
 
