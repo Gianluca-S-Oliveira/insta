@@ -52,6 +52,7 @@ const Cadastro = () => {
                 return authUser.user.updateProfile({
                     displayName: username,
                     phoneNumber: whatsapp,
+                    UserMail: email,
                 });
             })
             .then(() => {

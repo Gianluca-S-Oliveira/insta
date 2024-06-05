@@ -58,7 +58,7 @@ function Justificativa() {
         </div>
             <section className="justificativa-container">
                 <div className='justificativas'>
-                    <div className="text-container">
+                    <div className="texto_justificativa ">
                         <h1 className='title'>Justificativa HELPETS</h1>
                         <p className='p-justify'>
                             A Helpets foi criada para suprir a necessidade de uma plataforma exclusiva para adoção de pets. Diante da ausência de um espaço dedicado, muitos adotantes e animais em busca de lares amorosos acabam dispersos em outras redes sociais. Com a Helpets, proporcionamos um ambiente único, simplificando e agilizando a conexão entre quem busca e quem oferece um lar, promovendo assim o bem-estar dos animais e fortalecendo essa importante comunidade de amor pelos pets.

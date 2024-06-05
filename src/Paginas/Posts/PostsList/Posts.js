@@ -28,7 +28,7 @@ function getColorForUser(username) {
 
     return `hsl(${hash}, 70%, 50%)`;
 }
-function Posts({ postId, user, userName, caption, imageURL, numero }) {
+function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [editComment, setEditComment] = useState('');
@@ -100,7 +100,8 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
         db.collection("posts").doc(postId).collection("comments").add({
             text: newComment,
             username: user.displayName,
-            numero: user.phoneNumber,
+            useremail: user.UserMail,
+
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
         setNewComment('');
@@ -174,7 +175,7 @@ function Posts({ postId, user, userName, caption, imageURL, numero }) {
                         </div>
 
                         <h1 className="p-copy" onClick={copiarEmail}>
-                            {user.email}
+                            {useremail}
                             <FaRegCopy onClick={copiarEmail} />
                         </h1>
                     </div>

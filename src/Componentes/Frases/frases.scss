@@ -22,10 +22,12 @@
         width: 230px;
         overflow: hidden;
         border-radius: 15px;
+        background-size: cover;
 
         img {
             width: 100%;
             border-radius: 15px;
+            object-fit: cover;
         }
 
     }

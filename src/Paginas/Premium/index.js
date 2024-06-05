@@ -57,15 +57,24 @@ function Premium() {
 
                 <section className="justificativa-container">
                     <div className='justificativas'>
-                        <div className="text-container">
-                            <h2>Seja Helpets Premium!</h2>
+                        <div className="premium_text">
+                            <h2 className="h2">Seja Helpets Premium!</h2>
                             <p>
                                 Leve sua experiência na Helpets para outro nível com nossa assinatura premium. Desfrute de benefícios exclusivos, destaque sua participação na comunidade e aproveite descontos especiais em produtos e serviços relacionados a animais de estimação. Assine hoje mesmo e faça a diferença na vida dos animais que precisam de ajuda!
                             </p>
                             <div style={{ width: '80%' }}>
-                                <BotaoCustomizado type="submit" >
-                                    Assinar Agora
-                                </BotaoCustomizado>
+                                <a href='/pagamento' >
+                                    <BotaoCustomizado type="submit" to='/cadastro'>
+                                        Assinar Agora
+
+                                    </BotaoCustomizado>
+                                </a>
+                                <br />
+                                <br />
+
+                                <Link to="/cadastro" style={{ textDecoration: 'none', color: 'var(--laranja--escuro)', fontSize: '1.4rem', marginTop: '10px' }} >
+                                    Não possui cadastro? <span className="span"> cadastre-se aqui</span>
+                                </Link>
                             </div>
 
                         </div>

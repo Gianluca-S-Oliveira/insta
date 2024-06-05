@@ -22,12 +22,11 @@
     }
 }
 
-.text-container {
+.texto_justificativa {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    background-color: red;
 
     .title {
         margin-bottom: 10px;

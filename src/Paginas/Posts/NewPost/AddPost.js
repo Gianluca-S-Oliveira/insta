@@ -17,7 +17,6 @@ function AddPost({ username }) {
     const [progress, setProgress] = useState(0);
 
     const [showEmojis, setShowEmojis] = useState(false);
-
     const handleChange = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
@@ -51,6 +50,7 @@ function AddPost({ username }) {
                 alert(error.message);
             },
             () => {
+                console.log("aaaa" + username)
                 storage
                     .ref("images")
                     .child(image.name)
