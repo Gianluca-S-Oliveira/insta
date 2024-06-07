@@ -43,7 +43,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
         let unsubscribe;
         if (postId) {
             unsubscribe = db
-                .collection("3")
+                .collection("posts")
                 .doc(postId)
                 .collection("comments")
                 .orderBy('timestamp', 'desc')
@@ -61,7 +61,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
 
     useEffect(() => {
         if (postId) {
-            db.collection("3")
+            db.collection("posts")
                 .doc(postId)
                 .get()
                 .then(doc => {
@@ -97,7 +97,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
 
     const postComment = (event) => {
         event.preventDefault();
-        db.collection("3").doc(postId).collection("comments").add({
+        db.collection("posts").doc(postId).collection("comments").add({
             text: newComment,
             username: user.displayName,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -112,7 +112,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
     };
 
     const updateComment = () => {
-        db.collection("3")
+        db.collection("posts")
             .doc(postId)
             .collection("comments")
             .doc(commentID).update({
@@ -154,7 +154,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                         className="icon"
                         style={{ color: 'red', cursor: 'pointer' }}
                         onClick={() => {
-                            db.collection("3")
+                            db.collection("posts")
                                 .doc(postId).delete();
                         }}
                     />
@@ -214,7 +214,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                             <b>{comment.username.substr(0, 1).toUpperCase() + comment.username.substr(1, comment.username.length)}</b>
                             {(comment.username === user?.displayName || user?.displayName === userName) && (
                                 <p>(você)</p>
-                            )}: &nbsp;{comment.text}
+                            )}: &nbsp;<p>{comment.text}</p>
                             {(comment.username === user?.displayName || user?.displayName === userName) && (
                                 <>
                                     <EditIcon
@@ -224,7 +224,7 @@ function Posts({ postId, user, userName, caption, imageURL, UserMail }) {
                                     <DeleteOutlineIcon
                                         style={{ color: 'red', cursor: 'pointer' }}
                                         onClick={() => {
-                                            db.collection("3")
+                                            db.collection("posts")
                                                 .doc(postId)
                                                 .collection("comments")
                                                 .doc(id).delete();

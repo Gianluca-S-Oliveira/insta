@@ -81,7 +81,8 @@
                 .p-copy {
                     font-size: 1.2rem;
                     color: var(--laranja--escuro);
-                    &:hover{
+
+                    &:hover {
                         cursor: pointer;
                     }
                 }
@@ -162,6 +163,10 @@
         .name_coment {
             display: flex;
             align-items: center;
+
+            p {
+                text-align: left;
+            }
         }
     }
 
